@@ -147,10 +147,10 @@ line-height: 1.4;
   }
 
   .hero{
-    background-image: url("img\hero.jpg");
+    background-image: url("..img\hero.jpg");
     height:400px;
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     text-transform: uppercase;
   }
 
@@ -163,7 +163,7 @@ line-height: 1.4;
     color: #faa541;
   }
 
-  .hero h1 h2{
+  .hero h1, .hero h2{
     font-size:63px;
     font-weight: 700;
     line-height: 0.9;
