@@ -6,4 +6,25 @@ a { color: #faa541; text-decoration: none; }
 ul { padding: 0; margin: 0; list-style: none; }
 nav { padding: 10px 0; }
 h1, h2, h3, h4, h5, h6 { margin: 0; }
+section{display: flex;}
 /***************************************/
+
+.container{
+  top: 0;
+  bottom:0;
+  left:auto;
+  right: auto;
+  max-width: 1170px;
+}
+
+.flex{
+  display:flex;
+}
+
+.flex-column{
+  flex-direction: column;
+}
+
+.flex-one{
+  flex:1;
+}
