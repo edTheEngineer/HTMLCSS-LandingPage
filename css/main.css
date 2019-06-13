@@ -352,17 +352,17 @@ footer a {
 }
 
 .twitter{
-  background-image: url('..img/twitter.svg')
+  background-image: url('..img/twitter.svg');
 }
 
 .facebook{
-  background-image: url('..img/facebook.svg')
+  background-image: url('..img/facebook.svg');
 }
 .instagram{
-  background-image: url('..img/instagram.svg')
+  background-image: url('..img/instagram.svg');
 }
 .pinterest{
-  background-image: url('..img/pinterest.svg')
+  background-image: url('..img/pinterest.svg');
 }
 .newsletter .link-header{
   font-size:12px;
