@@ -164,7 +164,7 @@ line-height: 1.4;
   }
 
   .hero h1, .hero h2{
-    font-size:63px;
+    font-size: 63px;
     font-weight: 700;
     line-height: 0.9;
   }
@@ -218,7 +218,13 @@ line-height: 1.4;
     text-align: center;
   }
 
-  .category-text>div{
+  .category-text > h1{
+    font-size:16px;
+    font-weight:200;
+    color:#faa541;
+  }
+
+  .category-text > h3{
     font-size: 30px;
     font-weight: 700;
     line-height: 1;
