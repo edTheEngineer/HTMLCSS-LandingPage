@@ -263,6 +263,12 @@ line-height: 1.4;
     color:#ffffff;
   }
 
+  .full-banner-sidebar h4{
+    font-size: 40px;
+    font-weight: 700;
+    color: #637f94;
+  }
+
   .full-banner-sidebar h4:after{
     content:"";
     width:100px;
