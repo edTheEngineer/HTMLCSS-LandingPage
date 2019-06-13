@@ -9,13 +9,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
 section{display: flex;}
 /***************************************/
 
-.container{
-  top: 0;
-  bottom:0;
-  left:auto;
-  right: auto;
-  max-width: 1170px;
-}
+.container{  margin: 0 auto 0 auto; max-width: 1170px;}
 
 .flex{
   display:flex;
@@ -27,4 +21,57 @@ section{display: flex;}
 
 .flex-one{
   flex:1;
+}
+
+.align-center{
+  align-items: center;
+}
+
+.center{
+  justify-content: center;
+}
+
+.space-between{
+  justify-content: space-between;
+}
+
+.btn{
+  cursor: auto;
+  border:none;
+  padding: 6px 12px 6px 12px;
+  border-radius: 3px;
+  line-height: 1.4;
+}
+
+.btn-default{
+  color:white;
+  background-color: #faa541;
+}
+
+.btn-primary{
+  color:white;
+  background-color: #364147;
+}
+
+.form-control{
+  display: block;
+  padding: 6px 12px 6px 12px;
+  border: 1px solid #a0a0a0;
+  color: #8588a2;
+  line-height: 1.4;
+}
+
+.text-light{
+  font-size:30px;
+  color:#a0a0a0;
+}
+
+.text-secondary{
+  font-size:30px;
+  color: #faa541;
+}
+
+.text-primary{
+  font-size:16px;
+  color:#364147;
 }
