@@ -267,6 +267,8 @@ line-height: 1.4;
     font-size: 40px;
     font-weight: 700;
     color: #637f94;
+    font-style: italic;
+    line-height: 1;
   }
 
   .full-banner-sidebar h4:after{
