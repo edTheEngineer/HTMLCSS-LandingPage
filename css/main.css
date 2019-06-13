@@ -184,7 +184,7 @@ line-height: 1.4;
     padding: 25 0;
   }
 
-  .banner img {
+  .banner>img {
     width: 250px;
   }
 
