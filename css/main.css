@@ -300,6 +300,7 @@ line-height: 1.4;
   }
 
   footer{
+    display: flex;
     flex-wrap: wrap;
     position: relative;
     z-index: 0;
@@ -307,7 +308,7 @@ line-height: 1.4;
     background-color: #000000;
   }
 
-  footer:after{
+  footer::after{
     content: "";
     background-color: #a0a0a0;
     width:75%;
