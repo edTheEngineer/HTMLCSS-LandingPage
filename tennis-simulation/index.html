@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Tournament Simulation - 128 Player Draw</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="tournament-header">
+        <h1>Tennis Tournament Simulation</h1>
+        <div class="tournament-info">
+            <span class="player-count">128 Players</span>
+            <span class="tournament-type">Single Elimination</span>
+        </div>
+        <div class="controls">
+            <button id="generateTournament" class="btn btn-primary" aria-label="Generate new tournament bracket">
+                Generate New Tournament
+            </button>
+            <button id="exportDraw" class="btn btn-secondary" aria-label="Export tournament results">
+                Export Draw
+            </button>
+            <button id="resetTournament" class="btn btn-danger" aria-label="Reset tournament">
+                Reset Tournament
+            </button>
+        </div>
+    </header>
+
+    <main class="tournament-container">
+        <div class="tournament-bracket" id="tournamentBracket">
+            <!-- Tournament rounds will be generated here -->
+            <div class="round" data-round="1">
+                <h2 class="round-title">Round 1 <span class="round-subtitle">(128 → 64)</span></h2>
+                <div class="matches-container" id="round1Matches"></div>
+            </div>
+            <div class="round" data-round="2">
+                <h2 class="round-title">Round 2 <span class="round-subtitle">(64 → 32)</span></h2>
+                <div class="matches-container" id="round2Matches"></div>
+            </div>
+            <div class="round" data-round="3">
+                <h2 class="round-title">Round 3 <span class="round-subtitle">(32 → 16)</span></h2>
+                <div class="matches-container" id="round3Matches"></div>
+            </div>
+            <div class="round" data-round="4">
+                <h2 class="round-title">Round 4 <span class="round-subtitle">(16 → 8)</span></h2>
+                <div class="matches-container" id="round4Matches"></div>
+            </div>
+            <div class="round" data-round="5">
+                <h2 class="round-title">Quarterfinals <span class="round-subtitle">(8 → 4)</span></h2>
+                <div class="matches-container" id="round5Matches"></div>
+            </div>
+            <div class="round" data-round="6">
+                <h2 class="round-title">Semifinals <span class="round-subtitle">(4 → 2)</span></h2>
+                <div class="matches-container" id="round6Matches"></div>
+            </div>
+            <div class="round" data-round="7">
+                <h2 class="round-title">Final <span class="round-subtitle">(2 → 1)</span></h2>
+                <div class="matches-container" id="round7Matches"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Score Input Modal -->
+    <div id="scoreModal" class="modal" role="dialog" aria-labelledby="scoreModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="scoreModalTitle">Enter Match Score</h3>
+                <button class="modal-close" aria-label="Close score input modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="match-players">
+                    <div class="player1-info">
+                        <label for="player1Name">Player 1:</label>
+                        <span id="player1Name"></span>
+                    </div>
+                    <div class="player2-info">
+                        <label for="player2Name">Player 2:</label>
+                        <span id="player2Name"></span>
+                    </div>
+                </div>
+                
+                <div class="score-input-section">
+                    <h4>Match Score</h4>
+                    <div class="sets-container">
+                        <div class="set-input">
+                            <label>Set 1:</label>
+                            <input type="number" id="set1p1" min="0" max="7" placeholder="0" aria-label="Player 1 Set 1 score">
+                            <span>-</span>
+                            <input type="number" id="set1p2" min="0" max="7" placeholder="0" aria-label="Player 2 Set 1 score">
+                        </div>
+                        <div class="set-input">
+                            <label>Set 2:</label>
+                            <input type="number" id="set2p1" min="0" max="7" placeholder="0" aria-label="Player 1 Set 2 score">
+                            <span>-</span>
+                            <input type="number" id="set2p2" min="0" max="7" placeholder="0" aria-label="Player 2 Set 2 score">
+                        </div>
+                        <div class="set-input">
+                            <label>Set 3:</label>
+                            <input type="number" id="set3p1" min="0" max="7" placeholder="0" aria-label="Player 1 Set 3 score">
+                            <span>-</span>
+                            <input type="number" id="set3p2" min="0" max="7" placeholder="0" aria-label="Player 2 Set 3 score">
+                        </div>
+                    </div>
+                    
+                    <div class="winner-selection">
+                        <h4>Select Winner</h4>
+                        <div class="winner-options">
+                            <label>
+                                <input type="radio" name="winner" value="player1" id="winnerPlayer1">
+                                <span id="winnerPlayer1Name"></span>
+                            </label>
+                            <label>
+                                <input type="radio" name="winner" value="player2" id="winnerPlayer2">
+                                <span id="winnerPlayer2Name"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="error-message" id="scoreError" role="alert" aria-live="polite"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveScore" class="btn btn-primary">Save Score</button>
+                <button id="cancelScore" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading indicator -->
+    <div id="loadingIndicator" class="loading-indicator" aria-hidden="true">
+        <div class="spinner"></div>
+        <span>Generating tournament...</span>
+    </div>
+
+    <!-- Tournament completion modal -->
+    <div id="completionModal" class="modal" role="dialog" aria-labelledby="completionTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="completionTitle">🏆 Tournament Complete!</h3>
+                <button class="modal-close" aria-label="Close completion modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="champion-info">
+                    <h4>Tournament Champion:</h4>
+                    <div class="champion-name" id="championName"></div>
+                </div>
+                <div class="tournament-stats">
+                    <h4>Tournament Statistics:</h4>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Matches:</span>
+                            <span class="stat-value">127</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Rounds Completed:</span>
+                            <span class="stat-value">7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="exportFinalDraw" class="btn btn-primary">Export Final Draw</button>
+                <button id="newTournament" class="btn btn-secondary">Start New Tournament</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
